@@ -1,0 +1,19 @@
+{
+  "categories": [
+    {
+      "id": "1",
+      "name": "Uncategorize",
+      "slug": "uncategorize"
+    },
+    {
+      "id": "2",
+      "name": "Asp.Net",
+      "slug": "asp-dot-net"
+    },
+    {
+      "id": "3",
+      "name": "Technical Review",
+      "slug": "technical-review"
+    }
+  ]
+}

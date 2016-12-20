@@ -1,0 +1,16 @@
+{
+  "location": {},
+  "user": {
+    "isGlobal": true,
+    "id": null,
+    "authenticated": false,
+    "profile": {},
+    "identity": null
+  },
+  "appState": {
+    "isInitialized": false
+  },
+  "categories": {},
+  "posts": {},
+  "comments": {}
+}

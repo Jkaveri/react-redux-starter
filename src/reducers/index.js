@@ -1,8 +1,16 @@
-import { combineReducers } from 'redux'
+import combineReducers from './combineReducers'
 import locationReducer from './location'
+import categoryReducer from '../reducers/categories'
+import appState from '../reducers/appState'
+import posts from '../reducers/posts'
+import user from '../reducers/user'
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
     location: locationReducer,
+    categories: categoryReducer,
+    user,
+    posts,
+    appState,
     ...asyncReducers
   })
 }
