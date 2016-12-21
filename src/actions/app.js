@@ -1,5 +1,6 @@
 import appInitializer from '../services/appInitializer'
 import { actions as categoryActions } from './category'
+import Q from 'q'
 
 export const APP_INITIALIZED = 'APP_INITIALIZED'
 

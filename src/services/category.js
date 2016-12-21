@@ -7,23 +7,21 @@ const delay = config.simulate_network_delay
 
 const findById = (id) => R.find(R.propEq('id', id))
 
-class CategoryService {
-  getList () {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(categories)
-      }, delay)
-    })
-  }
-
-  getSingle (id) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(findById(id)(categories))
-      }, delay)
-    })
-  }
+export const getList = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(categories)
+    }, delay)
+  })
 }
 
-// singleton categoryService
-export default new CategoryService()
+export const getSingle = (id) => new Promise((resolve) => {
+  setTimeout(() => {
+    resolve(findById(id)(categories))
+  }, delay)
+})
+
+export default {
+  getList,
+  getSingle
+}

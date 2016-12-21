@@ -1,14 +1,12 @@
 import React, { PropTypes } from 'react'
-import R from 'ramda'
-import { Link } from 'react-router'
+import { Link, IndexLink } from 'react-router'
 import Immutable from 'immutable'
 
-const isNullOrEmpty = R.either(R.isEmpty, R.isNil)
 const TopNav = (props) => {
   const { categories } = props
   let categoryList
 
-  if (!isNullOrEmpty(categories)) {
+  if (categories.size > 0) {
     categoryList = categories.map(cat => (
       <li key={cat.get('id')}>
         <Link to={'/category/' + cat.get('slug')}>{cat.get('name')}</Link>
@@ -44,19 +42,12 @@ const TopNav = (props) => {
             <span className='icon-bar' />
             <span className='icon-bar' />
           </button>
-          <a className='navbar-brand' href='#'>Project name</a>
+          <a className='navbar-brand' href='#'>React Redux</a>
         </div>
         <div id='navbar' className='navbar-collapse collapse'>
           <ul className='nav navbar-nav'>
-            <li className='active'><a href='#'>Home</a></li>
-            <li><a href='#about'>About</a></li>
-            <li><a href='#contact'>Contact</a></li>
+            <li className='active'><IndexLink to='/'>Home</IndexLink></li>
             {categoryList}
-          </ul>
-          <ul className='nav navbar-nav navbar-right'>
-            <li><a href='../navbar/'>Default</a></li>
-            <li className='active'><a href='./'>Static top <span className='sr-only'>(current)</span></a></li>
-            <li><a href='../navbar-fixed-top/'>Fixed top</a></li>
           </ul>
         </div>{/* /.nav-collapse */}
       </div>
