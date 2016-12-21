@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react'
 import { Link, IndexLink } from 'react-router'
 import Immutable from 'immutable'
+import { translate } from 'react-i18next'
 
 const TopNav = (props) => {
-  const { categories } = props
+  const { categories, t } = props
   let categoryList
 
   if (categories.size > 0) {
@@ -42,11 +43,11 @@ const TopNav = (props) => {
             <span className='icon-bar' />
             <span className='icon-bar' />
           </button>
-          <a className='navbar-brand' href='#'>React Redux</a>
+          <a className='navbar-brand' href='#'>{t('common:hello')}</a>
         </div>
         <div id='navbar' className='navbar-collapse collapse'>
           <ul className='nav navbar-nav'>
-            <li className='active'><IndexLink to='/'>Home</IndexLink></li>
+            <li className='active'><IndexLink to='/'>{t('home')}</IndexLink></li>
             {categoryList}
           </ul>
         </div>{/* /.nav-collapse */}
@@ -56,7 +57,8 @@ const TopNav = (props) => {
 }
 
 TopNav.propTypes = {
-  categories: PropTypes.instanceOf(Immutable.Seq)
+  categories: PropTypes.instanceOf(Immutable.Seq),
+  t: PropTypes.func
 }
 
-export default TopNav
+export default translate(['topnav'])(TopNav)
