@@ -1,4 +1,4 @@
-import categoryService from '../services/category'
+import categoryService from '../services/categories'
 
 export const CATEGORIES_FETCHED = 'CATEGORIES_FETCHED'
 
