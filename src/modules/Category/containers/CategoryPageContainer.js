@@ -3,30 +3,63 @@ import { connect } from 'react-redux'
 import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { actions as categoryActions } from '../../../actions/category'
+import { actions as postsActions } from '~/actions/posts'
+import { withRouter } from 'react-router'
+import Immutable from 'immutable'
 
 class CategoryPageContainer extends Component {
   static propTypes = {
-    categories: PropTypes.array.isRequired,
-    categoryActions: PropTypes.object.isRequired
+    category: PropTypes.instanceOf(Immutable.Map),
+    posts: PropTypes.instanceOf(Immutable.Seq),
+    slug: PropTypes.string.isRequired,
+    postsActions: PropTypes.object
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.category !== this.props.category) {
+      const { category, postsActions } = nextProps
+      if (category.size > 0) {
+        postsActions.fetchPostsByCategoryId(category.get('id'))
+      }
+    }
   }
 
   render () {
     return (
-      <CategoryPage categories={this.props.categories} />
+      <CategoryPage category={this.props.category} posts={this.props.posts} />
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  const { categories } = state
+const mapStateToProps = (state, ownProps) => {
+  const { categories, posts, appState } = state
+  const { router } = ownProps
+  const { slug } = router.params
+  let category
+  if (appState.get('isInitialized')) {
+    if (slug) {
+      category = categories.valueSeq().find((cat) => cat.get('slug') === slug)
+    }
+    if (!category) {
+      throw new Error(`slug:${slug} not found`)
+    }
+  } else {
+    category = Immutable.fromJS({})
+  }
+
   return {
-    categories: categories ? categories.toJS() : []
+    slug,
+    category: category,
+    posts: category.size > 0
+      ? posts.valueSeq().filter((p) => p.get('categoryId') === category.get('id')).toList().toSeq()
+      : Immutable.fromJS([]).toSeq()
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  categoryActions: bindActionCreators(categoryActions, dispatch)
+  categoryActions: bindActionCreators(categoryActions, dispatch),
+  postsActions: bindActionCreators(postsActions, dispatch)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryPageContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CategoryPageContainer))
 

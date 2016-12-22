@@ -4,15 +4,23 @@ import truncate from '~/utils/truncate'
 const PostItem = props => {
   const { post, ...otherProps } = props
   const style = {
-    border: '1px solid rgba(0,0,0,0.3)',
-    padding: '6px 8px',
-    margin: '0 0 15px'
+    boxShadow: '0 0 3px rgba(0,0,0,0.3)',
+    margin: '0 0 8px',
+    height: '325px'
   }
+
   return (
     <div {...otherProps}>
-      <div style={style}>
-        <h3>{post.get('name')}</h3>
-        <span>{truncate(post.get('content'), 100)}</span>
+      <div style={style} className='media'>
+        <div>
+          <a href='#'>
+            <img className='media-object' src={post.get('picture')} alt='img' />
+          </a>
+        </div>
+        <div className='media-body'>
+          <h4 className='media-heading'>{post.get('name')}</h4>
+          <p>{truncate(post.get('content'), 100)}</p>
+        </div>
       </div>
     </div>
   )

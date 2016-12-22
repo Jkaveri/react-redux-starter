@@ -21,8 +21,13 @@ export const fetchPostsSucceed = (posts) => ({
   lastFetched
 })
 
+export const fetchPostsByCategoryId = (id) => (dispatch) => {
+  postsService.fetchPostsByCategoryId(id).then((posts) => dispatch(fetchPostsSucceed(posts)))
+}
+
 export const actions = {
   fetchPosts,
+  fetchPostsByCategoryId,
   fetchPostsSucceed
 }
 

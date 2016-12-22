@@ -1,5 +1,5 @@
 export default (store) => ({
-  path: '/category(/:category)',
+  path: '/category(/:slug)',
   getComponent: (nextState, cb) => {
     require.ensure([], (require) => {
       // import component.

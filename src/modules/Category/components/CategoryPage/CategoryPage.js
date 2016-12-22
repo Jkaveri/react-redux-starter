@@ -1,22 +1,21 @@
 import React, { PropTypes } from 'react'
+import Immutable from 'immutable'
+import PostsList from '~/components/PostsList'
 
 const CategoryPage = (props) => {
-  const { categories } = props
-
-  let categoryList = categories.map((cat) => (<li key={cat.id}>{cat.name}</li>))
-
+  const { category, posts } = props
   return (
-    <div>
-      <h1>Category Page</h1>
-      <ul>
-        {categoryList}
-      </ul>
+    <div className='container'>
+      <h1>{category.get('name')}</h1>
+      <hr />
+      <PostsList posts={posts} />
     </div>
   )
 }
 
 CategoryPage.propTypes = {
-  categories: PropTypes.array.isRequired
+  category: PropTypes.instanceOf(Immutable.Map),
+  posts: PropTypes.instanceOf(Immutable.Seq)
 }
 
 export default CategoryPage
