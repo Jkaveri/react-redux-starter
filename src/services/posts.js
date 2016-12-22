@@ -21,8 +21,6 @@ export const fetchPostsByCategoryId = (id) => {
 
   setTimeout(() => {
     const posts = findByCategoryId(id, data.posts)
-    console.log('fetch post by category id ' + id)
-    console.log('result', posts)
     deferred.resolve(posts)
   }, delay)
 

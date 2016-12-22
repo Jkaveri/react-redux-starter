@@ -6,6 +6,7 @@ import { actions as categoryActions } from '../../../actions/categories'
 import { actions as postsActions } from '~/actions/posts'
 import { withRouter } from 'react-router'
 import Immutable from 'immutable'
+import categoryManager from '~/services/categoryManager'
 
 class CategoryPageContainer extends Component {
   static propTypes = {
@@ -42,7 +43,7 @@ const mapStateToProps = (state, ownProps) => {
   let category
   if (appState.get('isInitialized')) {
     if (slug) {
-      category = categories.valueSeq().find((cat) => cat.get('slug') === slug)
+      category = categoryManager.findBySlug(slug, categories)
     }
     if (!category) {
       throw new Error(`slug:${slug} not found`)

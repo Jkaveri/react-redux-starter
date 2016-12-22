@@ -1,4 +1,4 @@
-import categoryService from '../services/categories'
+import { apiResources } from '../services/categoryManager'
 
 export const CATEGORIES_FETCHED = 'CATEGORIES_FETCHED'
 
@@ -7,7 +7,7 @@ export const categoriesFetched = (categories) => ({
   categories
 })
 export const fetchCategories = () => (dispatch) => {
-  categoryService.getList().then((categories) => {
+  apiResources.getList().then((categories) => {
     dispatch(categoriesFetched(categories))
   })
 }
