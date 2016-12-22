@@ -1,4 +1,4 @@
-import postsService from '../services/posts'
+import { apiResources } from '../services/postManager'
 
 /**
  * ACTION TYPES
@@ -13,7 +13,7 @@ export const CLEAR_POSTS = 'posts/clear'
 let lastFetched = null
 
 export const fetchPosts = (start, limit, orderBy, orderDir) => (dispatch) => {
-  postsService.fetchList().then((posts) => dispatch(fetchPostsSucceed(posts)))
+  apiResources.fetchList().then((posts) => dispatch(fetchPostsSucceed(posts)))
 }
 
 export const fetchPostsSucceed = (posts) => ({
@@ -27,7 +27,7 @@ export const clearPosts = () => ({
 })
 
 export const fetchPostsByCategoryId = (id) => (dispatch) => {
-  postsService.fetchPostsByCategoryId(id).then((posts) => dispatch(fetchPostsSucceed(posts)))
+  apiResources.fetchPostsByCategoryId(id).then((posts) => dispatch(fetchPostsSucceed(posts)))
 }
 
 export const actions = {

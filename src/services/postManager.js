@@ -6,7 +6,7 @@ const delay = config.simulate_network_delay
 
 const findByCategoryId = (id, list) => R.filter(R.propEq('categoryId', id), list)
 
-export const fetchList = () => {
+const fetchList = () => {
   const deferred = Q.defer()
 
   setTimeout(() => {
@@ -16,7 +16,7 @@ export const fetchList = () => {
   return deferred.promise
 }
 
-export const fetchPostsByCategoryId = (id) => {
+const fetchPostsByCategoryId = (id) => {
   const deferred = Q.defer()
 
   setTimeout(() => {
@@ -27,7 +27,11 @@ export const fetchPostsByCategoryId = (id) => {
   return deferred.promise
 }
 
-export default {
+export const apiResources = {
   fetchList,
   fetchPostsByCategoryId
+}
+
+export default {
+  findByCategoryId
 }
