@@ -24,6 +24,10 @@ class CategoryPageContainer extends Component {
     }
   }
 
+  componentDidMount () {
+    this.props.postsActions.clearPosts()
+  }
+
   render () {
     return (
       <CategoryPage category={this.props.category} posts={this.props.posts} />

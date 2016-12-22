@@ -1,4 +1,4 @@
-import categoryService from './category'
+import categoryService from './categories'
 import Q from 'q'
 
 const init = () => Q.all([categoryService.getList()]).then((data) => ({

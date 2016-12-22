@@ -20,7 +20,10 @@ export const fetchPostsByCategoryId = (id) => {
   const deferred = Q.defer()
 
   setTimeout(() => {
-    deferred.resolve(findByCategoryId(id, data.posts))
+    const posts = findByCategoryId(id, data.posts)
+    console.log('fetch post by category id ' + id)
+    console.log('result', posts)
+    deferred.resolve(posts)
   }, delay)
 
   return deferred.promise

@@ -1,13 +1,14 @@
 import createReducer from './createReducer'
-import { POSTS_FETCHED } from '../actions/posts'
+import { FETCH_POSTS_SUCCEED, CLEAR_POSTS } from '../actions/posts'
 import initialStateFactory from '../store/initialStateFactory'
 import R from 'ramda'
 
 const initialState = initialStateFactory('posts')
 
 export default createReducer({
-  [POSTS_FETCHED]: (prevState, action) => {
+  [FETCH_POSTS_SUCCEED]: (prevState, action) => {
     const indexedById = R.indexBy(R.prop('id'), action.posts)
     return prevState.merge(indexedById)
-  }
+  },
+  [CLEAR_POSTS]: (prevState, action) => initialState
 }, initialState)

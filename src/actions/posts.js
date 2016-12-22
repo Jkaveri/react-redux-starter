@@ -3,7 +3,8 @@ import postsService from '../services/posts'
 /**
  * ACTION TYPES
  */
-export const POSTS_FETCHED = 'POSTS_FETCHED'
+export const FETCH_POSTS_SUCCEED = 'FETCH_POSTS_SUCCEED'
+export const CLEAR_POSTS = 'posts/clear'
 
 /**
  * ACTION CREATORS
@@ -16,9 +17,13 @@ export const fetchPosts = (start, limit, orderBy, orderDir) => (dispatch) => {
 }
 
 export const fetchPostsSucceed = (posts) => ({
-  type: POSTS_FETCHED,
+  type: FETCH_POSTS_SUCCEED,
   posts,
   lastFetched
+})
+
+export const clearPosts = () => ({
+  type: CLEAR_POSTS
 })
 
 export const fetchPostsByCategoryId = (id) => (dispatch) => {
@@ -28,6 +33,7 @@ export const fetchPostsByCategoryId = (id) => (dispatch) => {
 export const actions = {
   fetchPosts,
   fetchPostsByCategoryId,
-  fetchPostsSucceed
+  fetchPostsSucceed,
+  clearPosts
 }
 
