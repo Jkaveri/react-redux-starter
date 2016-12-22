@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
-import { actions as appActions } from '../actions/app'
+import { actions as appActions } from '../actions/appState'
 import { connect } from 'react-redux'
 import CoreLayout from '../layouts/CoreLayout'
 

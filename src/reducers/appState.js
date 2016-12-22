@@ -1,5 +1,5 @@
 import createReducer from './createReducer'
-import { APP_INITIALIZED } from '../actions/app'
+import { APP_INITIALIZED } from '../actions/appState'
 import initialStateFactory from '../store/initialStateFactory'
 
 const initialState = initialStateFactory('appState')

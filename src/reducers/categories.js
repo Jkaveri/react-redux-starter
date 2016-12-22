@@ -1,5 +1,5 @@
 import createReducer from './createReducer'
-import { CATEGORIES_FETCHED } from '../actions/category'
+import { CATEGORIES_FETCHED } from '../actions/categories'
 import Immutable from 'immutable'
 import R from 'ramda'
 
