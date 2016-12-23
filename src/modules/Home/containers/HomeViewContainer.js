@@ -4,12 +4,22 @@ import { bindActionCreators } from 'redux'
 import HomeView from '../components/HomeView'
 import { actions as postsActions } from '../../../actions/posts'
 import Immutable from 'immutable'
+import { info } from '~/utils/logger'
 
 class HomeViewContainer extends Component {
 
   static propTypes = {
     posts: PropTypes.instanceOf(Immutable.Seq),
     postsActions: PropTypes.object
+  }
+
+  constructor (props, context) {
+    super(props, context)
+    this.onSearch = this.onSearch.bind(this)
+  }
+
+  onSearch (keyword) {
+    info('keyword', keyword)
   }
 
   componentDidMount () {
@@ -20,7 +30,7 @@ class HomeViewContainer extends Component {
     const { posts } = this.props
 
     return (
-      <HomeView posts={posts} />
+      <HomeView posts={posts} onSearch={this.onSearch} />
     )
   }
 }

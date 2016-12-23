@@ -13,3 +13,11 @@ export const warnning = (message) => {
   } catch (e) { }
   /* eslint-enable no-empty */
 }
+
+export const info = (message, ...args) => {
+  console.info(message, ...args)
+}
+
+export const log = (message, ...args) => {
+  console.log(message, ...args)
+}
