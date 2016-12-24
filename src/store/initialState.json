@@ -8,7 +8,9 @@
     "identity": null
   },
   "appState": {
-    "isInitialized": false
+    "isInitialized": false,
+    "isShowSearchResult": false,
+    "keyword": ""
   },
   "categories": {},
   "posts": {},

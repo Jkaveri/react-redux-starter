@@ -1,6 +1,6 @@
 import appInitializer from '../services/appInitializer'
 import { actions as categoryActions } from './categories'
-import actionCreator from './actionCreator'
+import sequenceAsyncActions from './sequenceAsyncActions'
 
 // ========================================
 // ACTION TYPES
@@ -11,35 +11,29 @@ import actionCreator from './actionCreator'
 * @param  {string} export const APP_INITIALIZED = 'APP_INITIALIZED' action type name
 * @return {string} action name when app is initialized
 */
-export const APP_INITIALIZED = 'APP/INITIALIZED'
+export const APP_INITIALIZED = 'app/initialized'
 
-export const APP_SEARCH = 'APP/SEARCH'
+export const APP_SEARCH = 'app/search'
+export const APP_SEARCH_SUCCEED = 'app/search/succeed'
+export const APP_SEARCH_CLEAR = 'app/search/clear'
+
+// ==========================================
+// ACTION METHODs
+// ==========================================
 
 /**
 * @function init app
 * @return {type} {description}
 */
-// export const init = () => (dispatch, getState) => {
-//   return dispatch((dispatch2) => appInitializer.init())
-//     .then((data) => dispatch(categoryActions.categoriesFetched(data.categories)))
-//     .then((data) => {
-//       return dispatch(appInitialized({
-//         isInitialized: true
-//       }))
-//     })
-// }
-
-export const init = () => actionCreator([
+export const init = () => sequenceAsyncActions([
   (dispatch) => {
     return appInitializer.init().then(
       (data) => dispatch(categoryActions.categoriesFetched(data.categories))
     )
   },
-  (dispatch, getState, data) => {
-    return dispatch(appInitialized({
-      isInitialized: true
-    }))
-  }
+  appInitialized({
+    isInitialized: true
+  })
 ])
 
 export const appInitialized = (appState) => ({
@@ -47,7 +41,27 @@ export const appInitialized = (appState) => ({
   appState
 })
 
+export const search = (keyword, searchObject) => ({
+  type: APP_SEARCH,
+  keyword,
+  searchObject
+})
+
+export const searchSucceed = (keyword, searchObject, result) => ({
+  type: APP_SEARCH_SUCCEED,
+  keyword,
+  searchObject,
+  result
+})
+
+export const clearSearch = (searchObject) => ({
+  type: APP_SEARCH_CLEAR
+})
+
 export const actions = {
   init,
-  appInitialized
+  appInitialized,
+  search,
+  searchSucceed,
+  clearSearch
 }

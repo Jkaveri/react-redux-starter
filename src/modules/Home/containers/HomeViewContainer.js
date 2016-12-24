@@ -3,14 +3,16 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import HomeView from '../components/HomeView'
 import { actions as postsActions } from '../../../actions/posts'
-import Immutable from 'immutable'
-import { info } from '~/utils/logger'
+import { actions as appActions } from '../../../actions/appState'
 
+import Immutable from 'immutable'
 class HomeViewContainer extends Component {
 
   static propTypes = {
     posts: PropTypes.instanceOf(Immutable.Seq),
-    postsActions: PropTypes.object
+    postsActions: PropTypes.object,
+    appActions: PropTypes.object,
+    appState: PropTypes.instanceOf(Immutable.Map)
   }
 
   constructor (props, context) {
@@ -19,7 +21,7 @@ class HomeViewContainer extends Component {
   }
 
   onSearch (keyword) {
-    info('keyword', keyword)
+    this.props.postsActions.search(keyword)
   }
 
   componentDidMount () {
@@ -27,20 +29,22 @@ class HomeViewContainer extends Component {
   }
 
   render () {
-    const { posts } = this.props
+    const { posts, appState } = this.props
 
     return (
-      <HomeView posts={posts} onSearch={this.onSearch} />
+      <HomeView posts={posts} onSearch={this.onSearch} appState={appState} />
     )
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  postsActions: bindActionCreators(postsActions, dispatch)
+  postsActions: bindActionCreators(postsActions, dispatch),
+  appActions: bindActionCreators(appActions, dispatch)
 })
 
 const mapStateToProps = (state) => ({
-  posts: state.posts.valueSeq()
+  posts: state.posts.valueSeq(),
+  appState: state.appState
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeViewContainer)
