@@ -38,8 +38,8 @@ class CategoryPageContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const { categories, posts, appState } = state
-  const { router } = ownProps
-  const { slug } = router.params
+  const { match } = ownProps
+  const { slug } = match.params
   let category
   if (appState.get('isInitialized')) {
     if (slug) {

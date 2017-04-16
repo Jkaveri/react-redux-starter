@@ -22,7 +22,14 @@ const webpackConfig = {
     ],
     extensions: ['.js', '.jsx', '.json'],
     alias: {
-      '~': project.paths.client()
+      '~': project.paths.client(),
+      'actions': project.paths.client('actions'),
+      'components': project.paths.client('components'),
+      'containers': project.paths.client('containers'),
+      'modules': project.paths.client('modules'),
+      'reducers': project.paths.client('reducers'),
+      'services': project.paths.client('services'),
+      'utils': project.paths.client('utils')
     }
   },
   module: {}

@@ -16,7 +16,10 @@ export const CoreLayout = ({ children, appState }) => (
 )
 
 CoreLayout.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
   appState: PropTypes.object.isRequired
 }
 

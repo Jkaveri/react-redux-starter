@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Link, IndexLink } from 'react-router'
+import { Link } from 'react-router-dom'
 import Immutable from 'immutable'
 import { translate } from 'react-i18next'
 
@@ -47,7 +47,7 @@ const TopNav = (props) => {
         </div>
         <div id='navbar' className='navbar-collapse collapse'>
           <ul className='nav navbar-nav'>
-            <li className='active'><IndexLink to='/'>{t('home')}</IndexLink></li>
+            <li className='active'><Link to='/'>{t('home')}</Link></li>
             {categoryList}
           </ul>
         </div>{/* /.nav-collapse */}

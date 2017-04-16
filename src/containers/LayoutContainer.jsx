@@ -7,7 +7,10 @@ import CoreLayout from '../layouts/CoreLayout'
 class LayoutContainer extends Component {
   static propTypes = {
     appActions: PropTypes.object,
-    children: PropTypes.element.isRequired,
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node
+    ]),
     appState: PropTypes.object.isRequired
   }
 
